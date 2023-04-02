@@ -17,7 +17,9 @@
       "@core": ["@core/"],
       "@fake-db": ["@fake-db/"],
       "environments": ["environments/"]
-    }
+    },
+    "resolveJsonModule": true,
+    // "types": ["vite/client"], // for vite
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": false,
