@@ -34,7 +34,7 @@
               "highlight.js",
               "ng2-flatpickr"
             ],
-            "outputPath": "dist/vuexy",
+            "outputPath": "dist/my-portfolio",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -50,7 +50,10 @@
             "stylePreprocessorOptions": {
               "includePaths": ["node_modules", "src/assets/"]
             },
-            "scripts": ["./node_modules/katex/dist/katex.min.js", "./node_modules/quill/dist/quill.min.js"],
+            "scripts": [
+              "./node_modules/katex/dist/katex.min.js",
+              "./node_modules/quill/dist/quill.min.js"
+            ],
             "vendorChunk": true,
             "extractLicenses": false,
             "buildOptimizer": false,
@@ -60,10 +63,12 @@
           },
           "configurations": {
             "production": {
-              "fileReplacements": [{
-                "replace": "src/environments/environment.ts",
-                "with": "src/environments/environment.prod.ts"
-              }],
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
               "baseHref": "/",
               "optimization": true,
               "outputHashing": "all",
@@ -72,7 +77,8 @@
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
-              "budgets": [{
+              "budgets": [
+                {
                   "type": "initial",
                   "maximumWarning": "4mb",
                   "maximumError": "5mb"
@@ -84,14 +90,18 @@
               ]
             },
             "hmr": {
-              "budgets": [{
-                "type": "anyComponentStyle",
-                "maximumWarning": "100kb"
-              }],
-              "fileReplacements": [{
-                "replace": "src/environments/environment.ts",
-                "with": "src/environments/environment.hmr.ts"
-              }]
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "100kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.hmr.ts"
+                }
+              ]
             }
           },
           "defaultConfiguration": ""
