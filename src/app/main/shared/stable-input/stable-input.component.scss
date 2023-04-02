@@ -1,0 +1,21 @@
+$lightGray: #c8c8c8;
+
+.cell {
+  border: 2px solid transparent;
+  border-radius: 5px;
+  padding: 8px 8px;
+  width: 100%;
+  height: 100%;
+
+  &:hover {
+    cursor: pointer;
+    border: 2px dashed $lightGray;
+  }
+}
+
+.custom-input {
+  border: 2px solid transparent;
+  padding: 8px 10px;
+  width: 100%;
+  height: 100%;
+}

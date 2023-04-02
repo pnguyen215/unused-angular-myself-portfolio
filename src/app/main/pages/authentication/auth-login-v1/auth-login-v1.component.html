@@ -1,0 +1,84 @@
+<div class="auth-wrapper auth-v1 px-2">
+    <div class="auth-inner py-2">
+        <!-- Login v1 -->
+        <div class="card mb-0">
+            <div class="card-body">
+                <a href="javascript:void(0);" class="brand-logo">
+                    <img src="{{ coreConfig.app.appLogoImage }}" alt="brand-logo" height="28" />
+                    <h2 class="brand-text text-primary ml-1">{{ coreConfig.app.appName }}</h2>
+                </a>
+
+                <p class="card-text mb-2">Please sign-in to your account</p>
+
+                <form class="auth-login-form mt-2" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                    <ngb-alert [type]="'danger'" [dismissible]="false" *ngIf="error">
+                        <div class="alert-body">
+                            <p>{{ error }}</p>
+                        </div>
+                    </ngb-alert>
+
+                    <!-- begin::Email -->
+                    <div class="form-group">
+                        <label for="login-email" class="form-label">Email</label>
+                        <input type="text" formControlName="email" class="form-control" placeholder="john@example.com"
+                            aria-describedby="login-email" tabindex="1" autofocus
+                            [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+                        <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                            <div *ngIf="f.email.errors.required">Email is required</div>
+                            <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+                        </div>
+                    </div>
+
+                    <!-- begin::Password -->
+                    <div class="form-group">
+                        <div class="d-flex justify-content-between">
+                            <label for="login-password">Password</label>
+                            <a routerLink="/pages/authentication/forgot-password-v1">
+                                <small>Forgot Password?</small>
+                            </a>
+                        </div>
+                        <div class="input-group input-group-merge form-password-toggle">
+                            <input appBlockP2C [type]="passwordTextType ? 'text' : 'password'"
+                                formControlName="password" class="form-control form-control-merge" tabindex="2"
+                                placeholder="·········" aria-describedby="login-password"
+                                [ngClass]="{ 'is-invalid error': submitted && f.password.errors }" />
+
+                            <div class="input-group-append">
+                                <span class="input-group-text cursor-pointer"><i class="feather font-small-4" [ngClass]="{
+                        'icon-eye-off': passwordTextType,
+                        'icon-eye': !passwordTextType
+                      }" (click)="togglePasswordTextType()"></i></span>
+                            </div>
+                        </div>
+                        <div *ngIf="submitted && f.password.errors" class="invalid-feedback"
+                            [ngClass]="{ 'd-block': submitted && f.password.errors }">
+                            <div *ngIf="f.password.errors.required">Password is required</div>
+                        </div>
+                    </div>
+
+                    <!-- begin::Remember -->
+                    <!-- <div class="form-group">
+                        <div class="custom-control custom-checkbox">
+                            <input class="custom-control-input" type="checkbox" id="remember-me" tabindex="3" />
+                            <label class="custom-control-label" for="remember-me"> Remember Me </label>
+                        </div>
+                    </div> -->
+
+                    <ng-container *ngIf="isLoading">
+                        <button type="button" class="btn btn-primary btn-block">
+                            <i class="loader font-size-16 align-middle me-2"></i> Verifying...
+                        </button>
+                    </ng-container>
+
+                    <ng-container *ngIf="!isLoading">
+                        <button [disabled]="loginForm.invalid" class="btn btn-primary btn-block" tabindex="4"
+                            rippleEffect>Sign in</button>
+                    </ng-container>
+
+                </form>
+
+            </div>
+        </div>
+        <!-- /Login v1 -->
+    </div>
+</div>

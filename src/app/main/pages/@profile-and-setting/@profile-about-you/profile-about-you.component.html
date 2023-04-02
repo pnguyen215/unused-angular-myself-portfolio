@@ -1,0 +1,138 @@
+<form [formGroup]="formGroup" class="form-block p-50" *blockUI="'form-section'">
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-12">
+            <div class="form-group">
+                <label class="font-weight-bolder" for="full_name">Full name</label>
+                <input type="text" class="form-control" name="full_name" placeholder="Enter full name"
+                    autocomplete="off" formControlName="full_name" [class.is-invalid]="isControlInvalid('full_name')" />
+                <div class="invalid-feedback" *ngIf="controlHasError('required', 'full_name')">
+                    Full name is required
+                </div>
+                <div class="invalid-feedback" *ngIf="controlHasError('maxlength', 'full_name')">
+                    Full name should have maximum {{conditional.maxLengthFullName}} symbols
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-12">
+            <app-dropdown-button-label [header]="'Who can see this?'" [attribute]="commonOptions"
+                (value)="onValue($event)">
+            </app-dropdown-button-label>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-12">
+            <div class="form-group">
+                <label class="font-weight-bolder" for="username">Username</label>
+                <input readonly="true" type="text" class="form-control" name="username" placeholder="Enter username"
+                    autocomplete="off" formControlName="username" [class.is-invalid]="isControlInvalid('username')" />
+                <div class="invalid-feedback" *ngIf="controlHasError('required', 'username')">
+                    username is required
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-12">
+            <app-dropdown-button-label [header]="'Who can see this?'" [attribute]="commonOptions"
+                (value)="onValue($event)">
+            </app-dropdown-button-label>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-12">
+            <div class="form-group">
+                <label class="font-weight-bolder" for="job_title">Job title</label>
+                <input type="text" class="form-control" name="job_title" placeholder="Enter job title"
+                    autocomplete="off" formControlName="job_title" [class.is-invalid]="isControlInvalid('job_title')" />
+                <div class="invalid-feedback" *ngIf="controlHasError('required', 'job_title')">
+                    Job title is required
+                </div>
+                <div class="invalid-feedback" *ngIf="controlHasError('maxlength', 'job_title')">
+                    Job title should have maximum {{conditional.maxLengthJobTitle}} symbols
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-12">
+            <app-dropdown-button-label [header]="'Who can see this?'" [attribute]="commonOptions"
+                (value)="onValue($event)">
+            </app-dropdown-button-label>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-12">
+            <div class="form-group">
+                <label class="font-weight-bolder" for="department">Department</label>
+                <input type="text" class="form-control" name="department_name" placeholder="Enter department"
+                    autocomplete="off" formControlName="department_name"
+                    [class.is-invalid]="isControlInvalid('department_name')" />
+                <div class="invalid-feedback" *ngIf="controlHasError('required', 'department_name')">
+                    Department is required
+                </div>
+                <div class="invalid-feedback" *ngIf="controlHasError('maxlength', 'department_name')">
+                    Department should have maximum {{conditional.maxLengthDepartment}} symbols
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-12">
+            <app-dropdown-button-label [header]="'Who can see this?'" [attribute]="commonOptions"
+                (value)="onValue($event)">
+            </app-dropdown-button-label>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-12">
+            <div class="form-group">
+                <label class="font-weight-bolder" for="organization_name">Organization</label>
+                <input type="text" class="form-control" name="organization_name" placeholder="Enter organization"
+                    autocomplete="off" formControlName="organization_name"
+                    [class.is-invalid]="isControlInvalid('organization_name')" />
+                <div class="invalid-feedback" *ngIf="controlHasError('required', 'organization_name')">
+                    Organization is required
+                </div>
+                <div class="invalid-feedback" *ngIf="controlHasError('maxlength', 'organization_name')">
+                    Organization should have maximum {{conditional.maxLengthOrganization}} symbols
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-12">
+            <app-dropdown-button-label [header]="'Who can see this?'" [attribute]="commonOptions"
+                (value)="onValue($event)">
+            </app-dropdown-button-label>
+        </div>
+    </div>
+
+    <div class="divider divider-left">
+        <h6 class="divider-text font-weight-bolder">Contact</h6>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-12">
+            <div class="form-group">
+                <label class="font-weight-bolder" for="email">Email address</label>
+                <input placement="top" popoverTitle="Info" ngbPopover="Go to the Email tab to manage your email address"
+                    triggers="mouseenter:mouseleave" type="email" class="form-control" name="email"
+                    placeholder="Enter email" autocomplete="off" formControlName="email"
+                    [class.is-invalid]="isControlInvalid('email')" readonly="true" />
+                <div class="invalid-feedback" *ngIf="controlHasError('email', 'email')">
+                    Invalid email
+                </div>
+                <div class="invalid-feedback" *ngIf="controlHasError('maxlength', 'email')">
+                    Email should have maximum {{conditional.maxLengthOrganization}} symbols
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-12">
+            <app-dropdown-button-label [header]="'Who can see this?'" [attribute]="commonOptions"
+                (value)="onValue($event)">
+            </app-dropdown-button-label>
+        </div>
+    </div>
+
+    <div class="form-group text-right mb-0">
+        <button (click)="reset()" class="btn btn-outline-secondary mr-75" rippleEffect>Reset</button>
+        <button [disabled]="formGroup.invalid" (click)="onBlockUI()" class="btn btn-primary"
+            rippleEffect>Submit</button>
+    </div>
+</form>

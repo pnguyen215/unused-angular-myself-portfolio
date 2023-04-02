@@ -1,0 +1,20 @@
+<textarea *ngIf="!editMode" (click)="editMode = true" class="cell">
+    {{ data }}
+</textarea>
+
+<div *ngIf="editMode">
+    <fieldset class="form-label-group">
+        <textarea appAutofocus [(ngModel)]="textLength.value" #textLength [maxlength]="maxLength"
+            (focusout)="onFocusValue()" (keydown.enter)="$event.target.blur()" [(ngModel)]="data"
+            (focusout)="editMode = false" [placeholder]="placeholder" [readonly]="readonly"
+            class="form-control char-textarea" id="textarea-counter" rows="3" [placeholder]="placeholder">
+    </textarea>
+        <label for="textarea-counter">{{placeholder}}</label>
+    </fieldset>
+    <small class="textarea-counter-value float-right">
+        <span *ngIf="textLength" class="char-count">
+            {{textLength.value.length }}
+        </span>
+        <span *ngIf="!textLength" class="char-count">0 </span> / {{maxLength}}
+    </small>
+</div>

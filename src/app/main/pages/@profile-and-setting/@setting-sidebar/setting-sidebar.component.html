@@ -1,0 +1,41 @@
+<div class="card">
+    <div class="card-body">
+        <div class="mkt-account-top">
+            <h6 class="font-weight-bolder filter-title mt-0">MKT Account</h6>
+        </div>
+        <button (click)="onChange(KEY_NO_PROFILE_VISIBILITY_DEFAULT)" type="button"
+            [ngClass]="onStyleChanged(KEY_NO_PROFILE_VISIBILITY_DEFAULT)" rippleEffect>
+            Profile and visibility
+        </button>
+        <button (click)="onChange(KEY_NO_EMAIL_DEFAULT)" type="button" [ngClass]="onStyleChanged(KEY_NO_EMAIL_DEFAULT)"
+            rippleEffect>
+            Email
+        </button>
+        <button (click)="onChange(KEY_NO_SECURITY_DEFAULT)" type="button"
+            [ngClass]="onStyleChanged(KEY_NO_SECURITY_DEFAULT)" rippleEffect>
+            Security
+        </button>
+        <button (click)="onChange(KEY_NO_ACCOUNT_REFS_DEFAULT)" type="button"
+            [ngClass]="onStyleChanged(KEY_NO_ACCOUNT_REFS_DEFAULT)" rippleEffect>
+            Account preferences
+        </button>
+        <button (click)="onChange(KEY_NO_LINK_REFS_DEFAULT)" type="button"
+            [ngClass]="onStyleChanged(KEY_NO_LINK_REFS_DEFAULT)" rippleEffect>
+            Link preferences
+        </button>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <div class="media d-flex align-items-center">
+            <h6 class="font-weight-bolder mr-auto mb-0">Home</h6>
+            <div class="custom-control custom-control-primary custom-switch">
+                <a (click)="redirectTo()" href="javascript:void(0)">
+                    <span [data-feather]="'home'" [class]="'mr-50'">
+                    </span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,15 @@
+<div ngbDropdown>
+    <button ngbDropdownToggle [class]="attribute?.classBtn" type="button" id="dropdownMenuButton700" rippleEffect>
+        {{flagPref}}
+    </button>
+    <div *ngIf="hasOptions()" ngbDropdownMenu aria-labelledby="dropdownMenuButton700">
+        <a [ngClass]="onClass(item)" (click)="onSelect(item)" ngbDropdownItem *ngFor="let item of attribute.options"
+            href="javascript:void(0)">
+            {{item.label}}
+            <br>
+            <small *ngIf="item?.description">
+                {{item?.description}}
+            </small>
+        </a>
+    </div>
+</div>

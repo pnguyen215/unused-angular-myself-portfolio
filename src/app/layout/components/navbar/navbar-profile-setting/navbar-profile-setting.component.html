@@ -1,0 +1,70 @@
+<li ngbTooltip="Your profile and settings" placement="bottom" ngbDropdown class="nav-item dropdown-notification mr-25">
+    <a class="nav-link" ngbDropdownToggle id="navbarUserDropdown">
+        <app-navbar-avatar *ngIf="isAvailable()"></app-navbar-avatar>
+        <app-navbar-avatar-default *ngIf="!isAvailable()"></app-navbar-avatar-default>
+    </a>
+
+    <ul ngbDropdownMenu aria-labelledby="navbarUserDropdown"
+        class="dropdown-menu dropdown-menu-media dropdown-menu-right">
+        <!-- Account title -->
+        <li class="dropdown-menu-header">
+            <div class="dropdown-header d-flex">
+                <h6 class="notification-title font-weight-bolder mb-0 mr-auto">
+                    Account
+                </h6>
+            </div>
+        </li>
+        <!--/ Account title -->
+
+        <!-- Profile content -->
+        <li class="scrollable-container media-list" [perfectScrollbar]>
+            <!-- Avatar -->
+            <a class="d-flex" href="javascript:void(0)">
+                <app-navbar-user></app-navbar-user>
+            </a>
+            <!--/ Avatar -->
+
+            <ng-container *ngIf="hasProfileSetting">
+                <!-- Manage account -->
+                <div class="media d-flex align-items-center">
+                    <h6 class="font-weight-bolder mr-auto mb-0">Manage account</h6>
+                    <div class="custom-control custom-control-primary custom-switch">
+                        <a (click)="redirectToSetting()" href="javascript:void(0)">
+                            <span [data-feather]="'external-link'" [class]="'mr-50'"> </span>
+                        </a>
+                    </div>
+                </div>
+                <!--/ Manage account -->
+
+                <!-- Info -->
+                <div class="media-no-bordered d-flex align-items-center">
+                    <h6 class="font-weight-bolder mr-auto mb-0">Info</h6>
+                </div>
+                <a class="d-flex" href="javascript:void(0)">
+                    <div class="media d-flex align-items-start">
+                        <div class="media-body">
+                            <p class="media-heading">Profile</p>
+                            <small class="notification-text">View user information</small>
+                        </div>
+                    </div>
+                </a>
+                <a class="d-flex" href="javascript:void(0)">
+                    <div class="media d-flex align-items-start">
+                        <div class="media-body">
+                            <p class="media-heading">Personal Setting</p>
+                            <small class="notification-text">Others: timezone and language</small>
+                        </div>
+                    </div>
+                </a>
+                <!--/ Info -->
+            </ng-container>
+        </li>
+        <!--/ Profile content -->
+
+        <!-- Profile footer -->
+        <li class="dropdown-menu-footer">
+            <a (click)="logout()" [routerLink]="[path_login]"> Logout </a>
+        </li>
+        <!--/ Profile footer -->
+    </ul>
+</li>

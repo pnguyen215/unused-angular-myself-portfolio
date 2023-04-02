@@ -1,0 +1,22 @@
+<!-- expand -->
+<core-card [actions]="['collapse']">
+    <h4 class="card-title font-weight-bolder">Profile and visibility</h4>
+    <div class="card-body pb-1">
+        <p class="card-text">
+            Manage your personal information, and control which information other people see and apps may access.
+        </p>
+        <p class="card-text">
+            Profile photo and header image
+        </p>
+        <div>
+            <app-profile-photo-header></app-profile-photo-header>
+        </div>
+    </div>
+</core-card>
+
+<core-card [actions]="['collapse']">
+    <h6 class="card-title font-weight-bolder">About you</h6>
+    <div class="card-body pb-1">
+        <app-profile-about-you [currentUser$]="currentUser$ | async"></app-profile-about-you>
+    </div>
+</core-card>

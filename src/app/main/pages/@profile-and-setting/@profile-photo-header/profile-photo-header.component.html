@@ -1,0 +1,38 @@
+<div *ngIf="(currentUser$ | async)?.attribute?.display_background_url" class="card card-profile">
+    <img [src]="(currentUser$ | async)?.attribute?.display_background_url" class="img-fluid card-img-top"
+        alt="Profile Cover Photo" />
+    <div class="card-body">
+        <div class="profile-image-wrapper">
+            <div class="profile-image">
+                <div class="avatar">
+                    <app-navbar-avatar-builder [currentUser$]="currentUser$" [classImage]="'avatar avatar-lg'"
+                        [zClassInitials]="'avatar avatar-xl bg-light-primary'">
+                    </app-navbar-avatar-builder>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="!(currentUser$ | async)?.attribute?.display_background_url" class="match-height">
+    <div class="card card-congratulations custom-card-congratulations">
+        <div class="card-body text-center">
+            <img src="assets/images/elements/decore-left.png" class="congratulations-img-left" alt="card-img-left" />
+            <img src="assets/images/elements/decore-right.png" class="congratulations-img-right" alt="card-img-right" />
+            <app-navbar-avatar-builder [currentUser$]="currentUser$" [classImage]="'avatar avatar-xl font-large-1'"
+                [zClassInitials]="'avatar avatar-xl bg-light-primary font-large-1'">
+            </app-navbar-avatar-builder>
+            <div class="text-center">
+                <h1 *ngIf="(currentUser$ | async)?.full_name" class="mb-1 text-white">
+                    Hi {{(currentUser$ | async)?.full_name}},
+                </h1>
+                <h1 *ngIf="!(currentUser$ | async)?.full_name" class="mb-1 text-white">
+                    Hi {{(currentUser$ | async)?.username}},
+                </h1>
+                <p class="card-text m-auto w-75">
+                    <!-- write something -->
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,9 @@
+<span *ngIf="(currentUser$ | async)?.display_avatar_url" [class]="classImage">
+    <img class="round" [src]="(currentUser$ | async)?.display_avatar_url" alt="avatar" height="38" width="38" />
+    <span class="avatar-status-online"></span>
+</span>
+
+<div *ngIf="!(currentUser$ | async)?.display_avatar_url" [class]="zClassInitials">
+    <div class="avatar-content">{{getShortUsername(currentUser$ | async)}}</div>
+    <span class="avatar-status-online"></span>
+</div>

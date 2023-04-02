@@ -1,0 +1,25 @@
+<div class="content-wrapper container-xxl overflow-hidden p-0 mr-3">
+    <div class="sidebar-detached sidebar-left">
+        <div class="sidebar">
+            <core-sidebar class="sidebar-shop" id="setting-sidebar-toggler" name="setting-sidebar"
+                collapsibleSidebar="bs-gt-lg" overlayClass="body-content-overlay">
+                <app-setting-sidebar (onChangeValue)="onSelected($event)"></app-setting-sidebar>
+            </core-sidebar>
+        </div>
+    </div>
+
+    <div class="content-detached content-right">
+        <div class="content-body">
+            <section id="content-page-right">
+                <div class="row">
+                    <div class="col-lg-8 col-md-12 col-12">
+                        <app-profile-visibility *ngIf="id === KEY_NO_PROFILE_VISIBILITY_DEFAULT">
+                        </app-profile-visibility>
+                        <app-profile-email *ngIf="id === KEY_NO_EMAIL_DEFAULT">
+                        </app-profile-email>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>

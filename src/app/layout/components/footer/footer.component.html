@@ -1,0 +1,26 @@
+<!-- Footer -->
+<p class="clearfix mb-0">
+  <!-- begin::Left -->
+  <span class="float-md-left d-block d-md-inline-block mt-25">
+    COPYRIGHT &copy; {{ year }}
+    <a class="ml-25" href="#" target="_blank">MKT</a>
+    <span class="d-none d-sm-inline-block">, All rights Reserved</span>
+  </span>
+  <!-- end::Left -->
+
+  <!-- begin::Right -->
+  <span class="float-md-right d-none d-md-block">
+    <!-- write something -->
+  </span>
+  <!-- end::Right -->
+</p>
+<!--/ Footer -->
+
+<!-- Move to top Button-->
+<app-scroll-top *ngIf="coreConfig.layout.scrollTop">
+</app-scroll-top>
+
+<!-- Buy now Button-->
+<div class="buy-now">
+  <a href="#" target="_blank" class="btn btn-danger" *ngIf="coreConfig.layout.buyNow">Buy Now</a>
+</div>

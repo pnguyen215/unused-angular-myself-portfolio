@@ -1,0 +1,10 @@
+@import '@core/scss/base/pages/page-profile';
+
+.img-fluid {
+    height: 200px !important;
+    background-size: auto;
+}
+
+.custom-card-congratulations {
+    background: linear-gradient(90deg, rgba(238,174,202,1) 0%, rgba(175,201,231,1) 100%) !important;
+}
