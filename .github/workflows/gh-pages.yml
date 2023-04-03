@@ -25,8 +25,11 @@ jobs:
       - name: Install dependencies
         run: npm install --force
 
-      - name: Install Karma reporter
+      - name: Install Karma CLI
         run: npm install karma-cli --force
+
+      - name: Install Karma Coverage Istanbul Reporter
+        run: npm install karma-coverage-istanbul-reporter --force
 
       - name: Run tests
         run: npm run gh:test:prod
