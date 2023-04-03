@@ -19,7 +19,9 @@
     "e2e": "ng e2e",
     "start:dev:vite": "vite",
     "build:vite": "tsc && vite build",
-    "preview:vite": "vite preview"
+    "preview:vite": "vite preview",
+    "gh:test:prod": "ng test --browsers=ChromeHeadless --watch=false --code-coverage",
+    "gh:build:prod": "ng build --configuration production --base-href https://pnguyen215.github.io/angular-myself-portfolio/"
   },
   "private": true,
   "dependencies": {
