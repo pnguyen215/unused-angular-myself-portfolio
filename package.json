@@ -61,6 +61,7 @@
     "feather-icons": "4.28.0",
     "flatpickr": "4.6.9",
     "hammerjs": "2.0.8",
+    "karma-coverage-istanbul-reporter": "^3.0.3",
     "katex": "0.13.11",
     "lodash": "4.17.21",
     "ng-apexcharts": "1.5.8",
