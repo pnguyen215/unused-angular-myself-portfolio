@@ -1,49 +1,51 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { RouterModule, Routes } from '@angular/router';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { NgModule } from "@angular/core";
+import { BrowserModule } from "@angular/platform-browser";
+import { RouterModule, Routes } from "@angular/router";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 
-import 'hammerjs';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { TranslateModule } from '@ngx-translate/core';
-import { ToastrModule } from 'ngx-toastr';
+import "hammerjs";
+import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
+import { TranslateModule } from "@ngx-translate/core";
+import { ToastrModule } from "ngx-toastr";
 
-import { CoreModule } from '@core/core.module';
-import { CoreCommonModule } from '@core/common.module';
-import { CoreSidebarModule, CoreThemeCustomizerModule } from '@core/components';
+import { CoreModule } from "@core/core.module";
+import { CoreCommonModule } from "@core/common.module";
+import { CoreSidebarModule, CoreThemeCustomizerModule } from "@core/components";
 
-import { coreConfig } from 'app/app-config';
+import { coreConfig } from "app/app-config";
 
-import { AppComponent } from 'app/app.component';
-import { LayoutModule } from 'app/layout/layout.module';
-import { SampleModule } from 'app/main/sample/sample.module';
-import {
-  NgxPropsApiModule,
-  NgxServiceInterceptorProviders,
-} from 'ngx-api-sdk';
-import { LineSys } from './model/routes/line-sys.route';
-import { ErrorInterceptor, JwtInterceptor } from './auth/helpers';
-import { SharedModule } from './main/shared/shared.module';
+import { AppComponent } from "app/app.component";
+import { LayoutModule } from "app/layout/layout.module";
+import { SampleModule } from "app/main/sample/sample.module";
+import { NgxPropsApiModule, NgxServiceInterceptorProviders } from "ngx-api-sdk";
+import { LineSys } from "./model/routes/line-sys.route";
+import { ErrorInterceptor, JwtInterceptor } from "./auth/helpers";
+import { SharedModule } from "./main/shared/shared.module";
+import { ResumeModule } from "./main/resume/resume.module";
 
 const appRoutes: Routes = [
   {
-    path: 'pages',
-    loadChildren: () => import('./main/pages/pages.module').then(m => m.PagesModule)
+    path: "pages",
+    loadChildren: () =>
+      import("./main/pages/pages.module").then((m) => m.PagesModule),
   },
   {
-    path: 'setting',
-    loadChildren: () => import('./main/pages/@profile-and-setting/profile-setting.module').then(m => m.ProfileSettingModule)
+    path: "setting",
+    loadChildren: () =>
+      import("./main/pages/@profile-and-setting/profile-setting.module").then(
+        (m) => m.ProfileSettingModule
+      ),
   },
   {
-    path: '',
+    path: "",
     redirectTo: `${LineSys.lines.line_home}`,
-    pathMatch: 'full',
+    pathMatch: "full",
   },
   {
-    path: '**',
-    redirectTo: `${LineSys.path.path_error}`
-  }
+    path: "**",
+    redirectTo: `${LineSys.path.path_error}`,
+  },
 ];
 
 @NgModule({
@@ -53,8 +55,8 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     HttpClientModule,
     RouterModule.forRoot(appRoutes, {
-      scrollPositionRestoration: 'enabled', // Add options right here
-      relativeLinkResolution: 'legacy'
+      scrollPositionRestoration: "enabled", // Add options right here
+      relativeLinkResolution: "legacy",
     }),
     TranslateModule.forRoot(),
 
@@ -71,6 +73,7 @@ const appRoutes: Routes = [
     // App modules
     LayoutModule,
     SampleModule,
+    ResumeModule,
 
     // Shared modules
     SharedModule,
@@ -80,17 +83,17 @@ const appRoutes: Routes = [
   ],
   bootstrap: [AppComponent],
   providers: [
-    NgxServiceInterceptorProviders,// API Sdk
+    NgxServiceInterceptorProviders, // API Sdk
     {
       provide: HTTP_INTERCEPTORS,
       useClass: JwtInterceptor,
-      multi: true
+      multi: true,
     },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: ErrorInterceptor,
-      multi: true
-    }
-  ]
+      multi: true,
+    },
+  ],
 })
-export class AppModule { }
+export class AppModule {}

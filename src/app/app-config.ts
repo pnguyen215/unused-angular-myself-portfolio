@@ -1,5 +1,4 @@
-import { CoreConfig } from '@core/types';
-import { environment } from 'environments/environment';
+import { CoreConfig } from "@core/types";
 
 /**
  * Default App Config
@@ -17,8 +16,8 @@ import { environment } from 'environments/environment';
 // prettier-ignore
 export const coreConfig: CoreConfig = {
   app: {
-    appName: 'MKT Eagle',                                        // App Name
-    appTitle: 'Ngx MKT Eagle Platform', // App Title
+    appName: 'Resume',                                        // App Name
+    appTitle: 'Resume Platform', // App Title
     appLogoImage: 'assets/images/logo/logo.svg',                  // App Logo
     appLanguage: 'en',                                           // App Default Language (en, fr, de, pt etc..)
   },

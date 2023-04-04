@@ -12,13 +12,16 @@ export const environment = {
       enabled: false,
     },
     banner: {
-      title: "MKT",
+      title: "Resume",
     },
     layout_builder: {
       enabled: false, // (Enable theme customized)
     },
     profile_and_setting: {
       enabled: false,
+    },
+    navbar: {
+      allow_hide_profile: true,
     },
   },
   components: {

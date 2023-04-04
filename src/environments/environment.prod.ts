@@ -8,13 +8,16 @@ export const environment = {
       enabled: false,
     },
     banner: {
-      title: "MKT",
+      title: "Resume",
     },
     layout_builder: {
       enabled: false,
     },
     profile_and_setting: {
       enabled: false,
+    },
+    navbar: {
+      allow_hide_profile: true,
     },
   },
   components: {

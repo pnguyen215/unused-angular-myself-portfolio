@@ -1,24 +1,24 @@
-import { Inject, Injectable, OnDestroy } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { Inject, Injectable, OnDestroy } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+import { BehaviorSubject, Observable } from "rxjs";
 
-import { environment } from 'environments/environment';
 import {
   allNotNull,
   NgxRecordsOpsService,
   NgxStoragesService,
   PropsRecordPrototypes,
-  PropsRegisterReq
-} from 'ngx-api-sdk';
-import { API } from 'app/model/routes/api.route';
-import { AuthClass } from 'app/model/class/auth-class.model';
-import { UserClass } from 'app/model/class/user-class.model';
-import { CoreKeys } from 'app/model/keys/core-keys.key';
+  PropsRegisterReq,
+} from "ngx-api-sdk";
+import { API } from "app/model/routes/api.route";
+import { AuthClass } from "app/model/class/auth-class.model";
+import { UserClass } from "app/model/class/user-class.model";
+import { KeyService } from "./key.service";
 
-@Injectable({ providedIn: 'root' })
-export class AuthenticationService extends NgxRecordsOpsService<any> implements OnDestroy {
-
-  protected host = environment.host.authorization;
+@Injectable({ providedIn: "root" })
+export class AuthenticationService
+  extends NgxRecordsOpsService<any>
+  implements OnDestroy
+{
   public currentUser: Observable<UserClass>;
   private currentUserSubject: BehaviorSubject<UserClass>;
 
@@ -29,25 +29,28 @@ export class AuthenticationService extends NgxRecordsOpsService<any> implements 
   constructor(
     @Inject(HttpClient) _http,
     private _storageService: NgxStoragesService,
+    private _keyService: KeyService
   ) {
     super(_http);
-    this.setHost(this.host);
-    this.currentUserSubject = new BehaviorSubject<UserClass>(this.getUserAuthorized());
+    this.setHost(this._keyService.getHostAA());
+    this.currentUserSubject = new BehaviorSubject<UserClass>(
+      this.getUserAuthorized()
+    );
     this.currentUserSubject.next(this.getUserAuthorized());
     this.currentUser = this.currentUserSubject.asObservable();
   }
 
   /**
    * @description - get current user from state
-  */
+   */
   public get currentUserValue(): UserClass {
     return this.currentUserSubject.value;
   }
 
   /**
-   * @param {PropsRegisterReq} request - 
+   * @param {PropsRegisterReq} request -
    * @description - call API login
-  */
+   */
   login(request: PropsRegisterReq): Observable<PropsRecordPrototypes<any>> {
     this.setPrefixApi(`${API.endpoints.userUrl}${API.eSuffix.toSignIn}`);
     return this.onPostAnyRequest(request);
@@ -55,7 +58,7 @@ export class AuthenticationService extends NgxRecordsOpsService<any> implements 
 
   /**
    * @description - get user detail when user logged in successfully
-  */
+   */
   self(): Observable<PropsRecordPrototypes<any>> {
     this.setPrefixApi(`${API.endpoints.selfUrl}${API.eSuffix.toInfo}`);
     return this.onGet();
@@ -68,31 +71,29 @@ export class AuthenticationService extends NgxRecordsOpsService<any> implements 
   }
 
   isAvailable(): boolean {
-    return allNotNull(environment.components?.auth_service?.enabled) && environment.components?.auth_service?.enabled;
+    return this._keyService.isAAAvailable();
   }
 
   getKeyToken(): string {
-    return environment.components.auth_service.storage_key_token ? environment.components.auth_service.storage_key_token :
-      CoreKeys.KEY_TOKEN_DEFAULT;
+    return this._keyService.getAAKeyToken();
   }
 
   getKeyUser(): string {
-    return environment.components.auth_service.storage_key_user ? environment.components.auth_service.storage_key_user :
-      CoreKeys.KEY_USER_DEFAULT;
+    return this._keyService.getAAKeyUser();
   }
 
   /**
-   * @param {AuthClass} auth - 
+   * @param {AuthClass} auth -
    * @description - save auth body into local storage
-  */
+   */
   setTokenAuthorized(auth: AuthClass) {
     this._storageService.set(this.getKeyToken(), auth.access_token);
   }
 
   /**
-   * @param {UserClass} user - 
+   * @param {UserClass} user -
    * @description - save user authorized into local storage
-  */
+   */
   setUserAuthorized(user: UserClass) {
     this._storageService.set(this.getKeyUser(), user);
     this.currentUserSubject.next(user);
@@ -100,14 +101,14 @@ export class AuthenticationService extends NgxRecordsOpsService<any> implements 
 
   /**
    * @description - get user storage into local before
-  */
+   */
   getUserAuthorized(): UserClass {
     return this._storageService.get(this.getKeyUser());
   }
 
   /**
    * @description - get token from local storage
-  */
+   */
   getTokenAuthorized(): string {
     try {
       return this._storageService.get(this.getKeyToken());
@@ -119,18 +120,20 @@ export class AuthenticationService extends NgxRecordsOpsService<any> implements 
 
   /**
    * @description - check user already authorized (user must be logged in before)
-  */
+   */
   hasAuthorized(): boolean {
-    return this.getTokenAuthorized() !== undefined &&
-      this.getTokenAuthorized() != '' &&
-      allNotNull(this.getTokenAuthorized());
+    return (
+      this.getTokenAuthorized() !== undefined &&
+      this.getTokenAuthorized() != "" &&
+      allNotNull(this.getTokenAuthorized())
+    );
   }
 
   getFakeAccessToken(): string {
-    return environment.components.auth_service.fake_access_token;
+    return this._keyService.getAAFakeAccessToken();
   }
 
   ngOnDestroy() {
-    this.subscriptions.forEach(sb => sb.unsubscribe());
+    this.subscriptions.forEach((sb) => sb.unsubscribe());
   }
 }

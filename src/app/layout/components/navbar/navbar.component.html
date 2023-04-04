@@ -49,7 +49,7 @@
     <!--/ Language selection -->
 
     <!-- begin::Profile Setting -->
-    <app-navbar-profile-setting></app-navbar-profile-setting>
+    <app-navbar-profile-setting *ngIf="!allowHideNavbarProfile"></app-navbar-profile-setting>
     <!-- end::Profile Setting -->
 
     <!-- User Dropdown -->
