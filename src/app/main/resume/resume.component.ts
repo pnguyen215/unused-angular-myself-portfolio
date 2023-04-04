@@ -1,15 +1,62 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from "@angular/core";
+import { CoreConfigService } from "@core/services/config.service";
+import { Subject } from "rxjs";
+import { takeUntil } from "rxjs/operators";
 
 @Component({
-  selector: 'app-resume',
-  templateUrl: './resume.component.html',
-  styleUrls: ['./resume.component.scss']
+  selector: "app-resume",
+  templateUrl: "./resume.component.html",
+  styleUrls: ["./resume.component.scss"],
+  encapsulation: ViewEncapsulation.None,
 })
 export class ResumeComponent implements OnInit {
+  public coreConfig: any;
+  private _config: any;
+  private _unsubscribeAll: Subject<any>;
 
-  constructor() { }
+  /**
+   * @param {CoreConfigService} _coreConfigService,
+   *
+   */
+  constructor(private _coreConfigService: CoreConfigService) {
+    this._unsubscribeAll = new Subject();
 
-  ngOnInit(): void {
+    // Configure the layout
+    // To update config local storage
+    this._config = {
+      layout: {
+        navbar: {
+          hidden: true,
+        },
+        menu: {
+          hidden: true,
+        },
+        footer: {
+          hidden: true,
+        },
+        customizer: false,
+        enableLocalStorage: false,
+      },
+    };
+    this._coreConfigService.config = this._config;
+    this._coreConfigService.setConfig(this._config, { emitEvent: true });
   }
 
+  ngOnInit(): void {
+    // Subscribe to config changes
+    this._coreConfigService.config
+      .pipe(takeUntil(this._unsubscribeAll))
+      .subscribe((config) => {
+        this.coreConfig = config;
+      });
+  }
+
+  /**
+   * On destroy
+   */
+  ngOnDestroy(): void {
+    // Unsubscribe from all subscriptions
+    this._unsubscribeAll.next();
+    this._unsubscribeAll.complete();
+  }
 }

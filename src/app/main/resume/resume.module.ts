@@ -8,9 +8,9 @@ import { ResumeComponent } from "./resume.component";
 
 const routes: Routes = [
   {
-    path: "home",
+    path: "cv",
     component: ResumeComponent,
-    data: { animation: "home" },
+    data: { animation: "cv" },
   },
 ];
 
