@@ -1,7 +1,8 @@
 <li ngbTooltip="Your profile and settings" placement="bottom" ngbDropdown class="nav-item dropdown-notification mr-25">
     <a class="nav-link" ngbDropdownToggle id="navbarUserDropdown">
-        <app-navbar-avatar *ngIf="isAvailable()"></app-navbar-avatar>
-        <app-navbar-avatar-default *ngIf="!isAvailable()"></app-navbar-avatar-default>
+        <app-navbar-avatar *ngIf="isAvailable() && !allowUseAvatarSelf"></app-navbar-avatar>
+        <app-navbar-avatar-default *ngIf="!isAvailable() && !allowUseAvatarSelf"></app-navbar-avatar-default>
+        <app-navbar-avatar-self *ngIf="!isAvailable() && allowUseAvatarSelf"></app-navbar-avatar-self>
     </a>
 
     <ul ngbDropdownMenu aria-labelledby="navbarUserDropdown"

@@ -1,9 +1,14 @@
 export const locale = {
-  lang: 'fr',
+  lang: "fr",
   data: {
     MENU: {
-      HOME: 'Maison',
-      SAMPLE: 'Échantillon'
-    }
-  }
-}
+      HOME: "Home",
+      ABOUT_ME: "About Me",
+      TECHNICAL_SKILLS: "Technical Skills",
+      PROFESSIONAL_EXPERIENCE: "Professional Experience",
+      EDUCATION: "Education",
+      TALENT: "Talent",
+      PASTIMES_AND_ACTIVITIES: "Pastimes And Activities",
+    },
+  },
+};

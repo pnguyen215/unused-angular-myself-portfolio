@@ -1,22 +1,20 @@
-import { Component, OnInit, ViewEncapsulation } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { CoreConfigService } from "@core/services/config.service";
 import { Subject } from "rxjs";
 import { takeUntil } from "rxjs/operators";
 
 @Component({
-  selector: "app-resume",
-  templateUrl: "./resume.component.html",
-  styleUrls: ["./resume.component.scss"],
-  encapsulation: ViewEncapsulation.None,
+  selector: "app-activities",
+  templateUrl: "./activities.component.html",
+  styleUrls: ["./activities.component.scss"],
 })
-export class ResumeComponent implements OnInit {
+export class ActivitiesComponent implements OnInit {
   public coreConfig: any;
   private _config: any;
   private _unsubscribeAll: Subject<any>;
 
   /**
-   * @param {CoreConfigService} _coreConfigService,
-   *
+   * @param {CoreConfigService} _coreConfigService
    */
   constructor(private _coreConfigService: CoreConfigService) {
     this._unsubscribeAll = new Subject();
@@ -26,7 +24,7 @@ export class ResumeComponent implements OnInit {
     this._config = {
       layout: {
         navbar: {
-          hidden: true,
+          hidden: false,
         },
         footer: {
           hidden: true,

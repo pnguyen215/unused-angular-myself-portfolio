@@ -48,4 +48,11 @@ export class KeyService {
       environment.attributes?.navbar?.allow_hide_profile
     );
   }
+
+  isAllowUseAvatarSelfNavbar(): boolean {
+    return (
+      allNotNull(environment.attributes?.navbar?.allow_use_avatar_self) &&
+      environment.attributes?.navbar?.allow_use_avatar_self
+    );
+  }
 }

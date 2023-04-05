@@ -1,20 +1,60 @@
-import { CoreMenu } from '@core/types'
+import { CoreMenu } from "@core/types";
 
 export const menu: CoreMenu[] = [
   {
-    id: 'home',
-    title: 'Home',
-    translate: 'MENU.HOME',
-    type: 'item',
-    icon: 'home',
-    url: 'home'
+    id: "_home_",
+    title: "Home",
+    translate: "MENU.HOME",
+    type: "item",
+    icon: "home",
+    url: "resume/home",
   },
   {
-    id: 'sample',
-    title: 'Sample',
-    translate: 'MENU.SAMPLE',
-    type: 'item',
-    icon: 'file',
-    url: 'sample'
-  }
-]
+    id: "_about_me_",
+    title: "About Me",
+    translate: "MENU.ABOUT_ME",
+    type: "item",
+    icon: "user",
+    url: "resume/about",
+  },
+  {
+    id: "_technical_skills_",
+    title: "Technical Skills",
+    translate: "MENU.TECHNICAL_SKILLS",
+    type: "item",
+    icon: "zap",
+    url: "resume/technical-skills",
+  },
+  {
+    id: "_professional_experience_",
+    title: "Experience",
+    translate: "MENU.PROFESSIONAL_EXPERIENCE",
+    type: "item",
+    icon: "award",
+    url: "resume/professional-experience",
+  },
+  {
+    id: "_education_",
+    title: "Education",
+    translate: "MENU.EDUCATION",
+    type: "item",
+    icon: "aperture",
+    url: "resume/education",
+  },
+  {
+    id: "_talent_",
+    title: "Talent",
+    translate: "MENU.TALENT",
+    type: "item",
+    icon: "bookmark",
+    url: "resume/talent",
+  },
+  {
+    id: "_pastimes_and_activities_",
+    title: "Pastimes And Activities",
+    translate: "MENU.PASTIMES_AND_ACTIVITIES",
+    type: "item",
+    icon: "activity",
+    url: "resume/pastimes-and-activities",
+  },
+];

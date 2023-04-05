@@ -23,6 +23,7 @@ import { NavbarUserBuilderComponent } from './navbar-user-builder/navbar-user-bu
 import { NavbarAvatarBuilderComponent } from './navbar-avatar-builder/navbar-avatar-builder.component';
 import { NavbarProfileNativeComponent } from './navbar-profile-native/navbar-profile-native.component';
 import { NavbarAvatarDefaultComponent } from './navbar-avatar-default/navbar-avatar-default.component';
+import { NavbarAvatarSelfComponent } from './navbar-avatar-self/navbar-avatar-self.component';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -41,7 +42,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     NavbarUserBuilderComponent,
     NavbarAvatarBuilderComponent,
     NavbarProfileNativeComponent,
-    NavbarAvatarDefaultComponent
+    NavbarAvatarDefaultComponent,
+    NavbarAvatarSelfComponent
   ],
   imports: [
     RouterModule,

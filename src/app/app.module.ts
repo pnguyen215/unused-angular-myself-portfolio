@@ -39,7 +39,7 @@ const appRoutes: Routes = [
   },
   {
     path: "",
-    redirectTo: `${LineSys.lines.line_cv}`,
+    redirectTo: `${LineSys.lines.line_cv}/${LineSys.lines.line_home}`,
     pathMatch: "full",
   },
   {

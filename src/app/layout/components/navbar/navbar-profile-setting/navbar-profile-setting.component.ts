@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { EnvService } from "@core/services/env.service";
-import { AuthenticationService } from "app/auth/service";
+import { AuthenticationService, KeyService } from "app/auth/service";
 import { LineSys } from "app/model/routes/line-sys.route";
 import { Logger } from "ngx-api-sdk";
 
@@ -15,16 +15,19 @@ export class NavbarProfileSettingComponent implements OnInit {
 
   path_login = LineSys.path.path_login;
   hasProfileSetting = false;
+  allowUseAvatarSelf = false;
 
   /**
    * @param {Router} _router
    * @param {AuthenticationService} _authService
    * @param {EnvService} _envService
+   * @param {KeyService} _keyService
    */
   constructor(
     private _router: Router,
     private _authService: AuthenticationService,
-    private _envService: EnvService
+    private _envService: EnvService,
+    private _keyService: KeyService
   ) {}
 
   ngOnInit(): void {
@@ -33,6 +36,7 @@ export class NavbarProfileSettingComponent implements OnInit {
 
   onConfig() {
     this.hasProfileSetting = this._envService.isAvailableProfileAndSetting();
+    this.allowUseAvatarSelf = this._keyService.isAllowUseAvatarSelfNavbar();
   }
 
   /**

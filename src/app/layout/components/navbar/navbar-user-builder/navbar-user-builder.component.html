@@ -2,7 +2,8 @@
     <div class="media-left">
         <app-navbar-avatar-builder *ngIf="(currentUser$ | async)" [currentUser$]="currentUser$">
         </app-navbar-avatar-builder>
-        <app-navbar-avatar-default *ngIf="!(currentUser$ | async)"></app-navbar-avatar-default>
+        <app-navbar-avatar-default *ngIf="!(currentUser$ | async) && !allowUseAvatarSelf"></app-navbar-avatar-default>
+        <app-navbar-avatar-self *ngIf="!(currentUser$ | async) && allowUseAvatarSelf"></app-navbar-avatar-self>
     </div>
     <div *ngIf="(currentUser$ | async)" class="media-body">
         <p class="media-heading" *ngIf="(currentUser$ | async).full_name">

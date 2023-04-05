@@ -1,7 +1,7 @@
 export class LineSys {
   static lines = {
     line_home: "home",
-    line_cv: "cv",
+    line_cv: "resume",
   };
 
   static routes = {

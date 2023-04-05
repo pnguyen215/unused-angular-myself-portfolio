@@ -21,7 +21,8 @@ export const environment = {
       enabled: false,
     },
     navbar: {
-      allow_hide_profile: true,
+      allow_hide_profile: false,
+      allow_use_avatar_self: true,
     },
   },
   components: {

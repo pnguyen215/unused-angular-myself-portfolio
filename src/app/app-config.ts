@@ -23,11 +23,11 @@ export const coreConfig: CoreConfig = {
   },
   layout: {
     skin: 'default',                        // default, dark, bordered, semi-dark
-    type: 'horizontal',                       // vertical, horizontal
+    type: 'vertical',                       // vertical, horizontal
     animation: 'fadeInLeft',                     // fadeInLeft, zoomIn , fadeIn, none
     menu: {
       hidden: false,           // Boolean: true, false
-      collapsed: false,           // Boolean: true, false
+      collapsed: true,           // Boolean: true, false
     },
     // ? For horizontal menu, navbar type will work for navMenu type
     navbar: {
