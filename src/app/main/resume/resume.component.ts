@@ -13,6 +13,7 @@ export class ResumeComponent implements OnInit {
   public coreConfig: any;
   private _config: any;
   private _unsubscribeAll: Subject<any>;
+  aUrl = "/assets/images/resume/phuocnguyenit97.jpg";
 
   /**
    * @param {CoreConfigService} _coreConfigService,
