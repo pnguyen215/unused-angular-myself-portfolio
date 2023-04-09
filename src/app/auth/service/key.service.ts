@@ -7,7 +7,7 @@ import { allNotNull } from "ngx-api-sdk";
   providedIn: "root",
 })
 export class KeyService {
-  constructor() {}
+  constructor() { }
 
   getHostAA(): string {
     return environment.host.authorization;
@@ -55,4 +55,15 @@ export class KeyService {
       environment.attributes?.navbar?.allow_use_avatar_self
     );
   }
-}
+
+  getHostResume(): string {
+    return environment.host.resume;
+  }
+
+  isAllowUseFakeToken(): boolean {
+    return (
+      allNotNull(environment.components?.auth_service?.allow_use_fake_token) &&
+      environment.components?.auth_service?.allow_use_fake_token
+    );
+  }
+} 

@@ -1,7 +1,12 @@
+import { HttpErrorResponse } from "@angular/common/http";
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { CoreConfigService } from "@core/services/config.service";
-import { Subject } from "rxjs";
-import { takeUntil } from "rxjs/operators";
+import { ResumeService } from "app/auth/service";
+import { ResumeClass } from "app/model/class/resume-class.model";
+import { CatchErrors } from "app/util/catch-errors.util";
+import { Logger, toJson } from "ngx-api-sdk";
+import { Subject, Subscription, throwError } from "rxjs";
+import { catchError, delay, finalize, first, takeUntil, tap } from "rxjs/operators";
 
 @Component({
   selector: "app-resume",
@@ -10,16 +15,22 @@ import { takeUntil } from "rxjs/operators";
   encapsulation: ViewEncapsulation.None,
 })
 export class ResumeComponent implements OnInit {
+  protected logger = new Logger(ResumeComponent.name);
   public coreConfig: any;
   private _config: any;
+  protected unsubscribe: Subscription[] = [];
   private _unsubscribeAll: Subject<any>;
+  isLoading = false;
+  error = "";
   aUrl = "/assets/images/resume/phuocnguyenit97.jpg";
+  resumeContent: ResumeClass;
 
   /**
    * @param {CoreConfigService} _coreConfigService,
    *
    */
-  constructor(private _coreConfigService: CoreConfigService) {
+  constructor(private _coreConfigService: CoreConfigService,
+    private _resumeService: ResumeService) {
     this._unsubscribeAll = new Subject();
 
     // Configure the layout
@@ -41,12 +52,47 @@ export class ResumeComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.onGet();
     // Subscribe to config changes
     this._coreConfigService.config
       .pipe(takeUntil(this._unsubscribeAll))
       .subscribe((config) => {
         this.coreConfig = config;
       });
+  }
+
+  onGet() {
+    this.isLoading = true;
+    this.error = "";
+    const isFetched = this._resumeService
+      .getResume()
+      .pipe(
+        first(),
+        delay(1000),
+        tap(() => { }),
+        catchError((error) => {
+          this.error = CatchErrors.onErrorsLoggedIn(error);
+          return throwError(error);
+        }),
+        finalize(() => {
+          this.isLoading = false;
+        })
+      )
+      .subscribe(
+        (response) => {
+          if (response.header.code === 200) {
+            this.resumeContent = new ResumeClass(response.items);
+            this.logger.info('resume fetched = ', toJson(this.resumeContent));
+          } else {
+            this.error = response.message;
+          }
+        },
+        (error: HttpErrorResponse) => {
+          this.error = CatchErrors.onErrorShorten(error);
+        }
+      );
+
+    this.unsubscribe.push(isFetched);
   }
 
   /**
@@ -56,5 +102,6 @@ export class ResumeComponent implements OnInit {
     // Unsubscribe from all subscriptions
     this._unsubscribeAll.next();
     this._unsubscribeAll.complete();
+    this.unsubscribe.forEach((sb) => sb.unsubscribe());
   }
 }

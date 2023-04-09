@@ -28,6 +28,7 @@ export const environment = {
   components: {
     auth_service: {
       enabled: false,
+      allow_use_fake_token: false,
       storage_key_token: "ngx_key_token",
       storage_key_user: "ngx_key_user",
       fake_access_token:
@@ -39,6 +40,7 @@ export const environment = {
   },
   host: {
     authorization: "http://localhost:8085",
+    resume: "https://raw.githubusercontent.com"
   },
 };
 

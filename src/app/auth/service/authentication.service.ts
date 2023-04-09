@@ -17,8 +17,7 @@ import { KeyService } from "./key.service";
 @Injectable({ providedIn: "root" })
 export class AuthenticationService
   extends NgxRecordsOpsService<any>
-  implements OnDestroy
-{
+  implements OnDestroy {
   public currentUser: Observable<UserClass>;
   private currentUserSubject: BehaviorSubject<UserClass>;
 
@@ -131,6 +130,10 @@ export class AuthenticationService
 
   getFakeAccessToken(): string {
     return this._keyService.getAAFakeAccessToken();
+  }
+
+  isAllowUseFakeToken(): boolean {
+    return this._keyService.isAllowUseFakeToken();
   }
 
   ngOnDestroy() {

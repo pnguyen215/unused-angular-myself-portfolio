@@ -26,7 +26,7 @@ export class JwtInterceptor implements HttpInterceptor {
     private _authService: AuthenticationService,
     private _ngxAuthHelper: NgxAuthorizationService,
     private _router: Router
-  ) {}
+  ) { }
 
   /**
    * Add auth header with jwt if user is logged in and request is to api url
@@ -44,11 +44,13 @@ export class JwtInterceptor implements HttpInterceptor {
     const allow: boolean = this._authService.hasAuthorized() && !isExpired;
 
     if (!isAvailable) {
-      request = request.clone({
-        setHeaders: {
-          Authorization: `${this._authService.getFakeAccessToken()}`,
-        },
-      });
+      if (this._authService.isAllowUseFakeToken()) {
+        request = request.clone({
+          setHeaders: {
+            Authorization: `${this._authService.getFakeAccessToken()}`,
+          },
+        });
+      }
       return next.handle(request);
     }
 

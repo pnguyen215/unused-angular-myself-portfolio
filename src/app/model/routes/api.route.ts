@@ -4,6 +4,7 @@ export class API {
         authorizationUrl: '/api/v1/login',
         userUrl: '/api/v1/users',
         selfUrl: '/api/v1/self',
+        githubResumeUrl: '/pnguyen215/gear-insights-free/master/my.resume.json'
     };
 
     static eSuffix = {
