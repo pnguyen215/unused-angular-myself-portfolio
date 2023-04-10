@@ -2,15 +2,17 @@ import { PropsPrototypes } from "ngx-api-sdk";
 import { BaseClass } from "./base-class.model";
 
 export class ResumeClass extends BaseClass {
-    summary?: ResumeSummary;
+    contact?: ResumeContact;
+    info?: ResumeInfo;
 
     constructor(params: PropsPrototypes = {}) {
         super(params)
-        this.summary = new ResumeSummary(params?.summary);
+        this.contact = new ResumeContact(params?.contact);
+        this.info = new ResumeInfo(params?.info);
     }
 }
 
-export class ResumeSummary {
+export class ResumeContact {
     link_github?: string;
     link_linkedin?: string;
     account_email: string;
@@ -23,3 +25,15 @@ export class ResumeSummary {
         this.work_phone = params?.work_phone;
     }
 }
+
+export class ResumeInfo {
+    full_name?: string;
+    nickname?: string;
+    job_role?: string;
+
+    constructor(params: PropsPrototypes = {}) {
+        this.full_name = params?.full_name;
+        this.nickname = params?.nickname;
+        this.job_role = params?.job_role;
+    }
+} 

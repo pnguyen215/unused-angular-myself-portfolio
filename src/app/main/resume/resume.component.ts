@@ -27,7 +27,7 @@ export class ResumeComponent implements OnInit {
 
   /**
    * @param {CoreConfigService} _coreConfigService,
-   *
+   *  @param {ResumeService} _resumeService
    */
   constructor(private _coreConfigService: CoreConfigService,
     private _resumeService: ResumeService) {
