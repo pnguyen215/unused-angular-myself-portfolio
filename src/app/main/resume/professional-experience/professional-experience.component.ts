@@ -24,7 +24,7 @@ export class ProfessionalExperienceComponent implements OnInit {
     this._config = {
       layout: {
         navbar: {
-          hidden: false,
+          hidden: true,
         },
         footer: {
           hidden: true,

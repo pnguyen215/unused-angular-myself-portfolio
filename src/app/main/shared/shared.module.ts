@@ -14,6 +14,7 @@ import { ContentHeaderModule } from 'app/layout/components/content-header/conten
 import { NouisliderModule } from 'ng2-nouislider';
 import { StableInputComponent } from './stable-input/stable-input.component';
 import { StableTextareaComponent } from './stable-textarea/stable-textarea.component';
+import { LoaderComponent } from './loader/loader.component';
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import { StableTextareaComponent } from './stable-textarea/stable-textarea.compo
     DropdownButtonLabelComponent,
     StableInputComponent,
     StableTextareaComponent,
+    LoaderComponent,
   ],
   imports: [
     CommonModule,
@@ -40,7 +42,8 @@ import { StableTextareaComponent } from './stable-textarea/stable-textarea.compo
     DropdownButtonComponent,
     DropdownButtonLabelComponent,
     StableInputComponent,
-    StableTextareaComponent
+    StableTextareaComponent,
+    LoaderComponent
   ],
   entryComponents: [
 

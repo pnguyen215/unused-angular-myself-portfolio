@@ -18,6 +18,8 @@ import { ProfessionalExperienceComponent } from "./professional-experience/profe
 import { EducationComponent } from "./education/education.component";
 import { TalentComponent } from "./talent/talent.component";
 import { ActivitiesComponent } from "./pastimes-and-activities/activities.component";
+import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
+import { SharedModule } from "../shared/shared.module";
 
 const routes: Routes = [
   {
@@ -82,9 +84,11 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     RouterModule.forChild(routes),
     ContentHeaderModule,
     TranslateModule,
+    NgbModule,
     CommonModule,
     CoreCommonModule,
     PerfectScrollbarModule,
+    SharedModule,
   ],
   providers: [
     {
@@ -93,4 +97,4 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     },
   ],
 })
-export class ResumeModule {}
+export class ResumeModule { }

@@ -1,18 +1,28 @@
-<div class="content-wrapper container-xxl p-0">
+<ng-container *ngIf="isLoading">
+    <app-loader></app-loader>
+</ng-container>
+
+<div *ngIf="!isLoading" class="content-wrapper container-xxl p-0">
     <div class="content-body">
-        <div style="background-image: url('assets/images/banner/banner.png'); background-repeat: no-repeat;"
+        <ngb-alert [type]="'danger'" [dismissible]="false" *ngIf="error">
+            <div class="alert-body">
+                <p>{{ error }}</p>
+            </div>
+        </ngb-alert>
+        <div *ngIf="!error"
+            style="background-image: url('assets/images/banner/banner.png'); background-repeat: no-repeat;"
             class="misc-wrapper p-4">
             <div class="misc-inner justify-content-center p-2 p-sm-3">
                 <div class="w-100 text-center">
-                    <h1 class="mb-1 text-center font-weight-bolder">Hi, I'm Nguyen Huu Phuoc</h1>
-                    <h4 class="mb-3 text-secondary">Full-Stack Developer</h4>
+                    <h1 class="mb-1 text-center font-weight-bolder">Hi, I'm {{resume.info.full_name}}
+                    </h1>
+                    <h4 class="mb-3 text-secondary">{{resume.info.job_role}}</h4>
                     <div style="height: 150px; width: 150px;" class="avatar">
                         <span style="height: 100%; width: 100%;" class="avatar-content">
                             <img style="background-size: cover;" class="round" [src]="aUrl" alt="avatar" height="150"
                                 width="150" />
                         </span>
                     </div>
-
                 </div>
                 <div class="w-100 text-center">
                     <div class="avatar bg-secondary m-1">

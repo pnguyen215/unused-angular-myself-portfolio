@@ -4,7 +4,7 @@ import { CoreConfigService } from "@core/services/config.service";
 import { ResumeService } from "app/auth/service";
 import { ResumeClass } from "app/model/class/resume-class.model";
 import { CatchErrors } from "app/util/catch-errors.util";
-import { Logger, toJson } from "ngx-api-sdk";
+import { Logger } from "ngx-api-sdk";
 import { Subject, Subscription, throwError } from "rxjs";
 import { catchError, delay, finalize, first, takeUntil, tap } from "rxjs/operators";
 
@@ -23,7 +23,7 @@ export class ResumeComponent implements OnInit {
   isLoading = false;
   error = "";
   aUrl = "/assets/images/resume/phuocnguyenit97.jpg";
-  resumeContent: ResumeClass;
+  resume: ResumeClass;
 
   /**
    * @param {CoreConfigService} _coreConfigService,
@@ -81,8 +81,7 @@ export class ResumeComponent implements OnInit {
       .subscribe(
         (response) => {
           if (response.header.code === 200) {
-            this.resumeContent = new ResumeClass(response.items);
-            this.logger.info('resume fetched = ', toJson(this.resumeContent));
+            this.resume = new ResumeClass(response.items);
           } else {
             this.error = response.message;
           }
